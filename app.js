@@ -2,142 +2,46 @@ const rock = document.getElementById('canvas-1');
 const paper = document.getElementById('canvas-2');
 const scissors = document.getElementById('canvas-3');
 
-const ctx1 = rock.getContext('2d');
-const ctx2 = paper.getContext('2d');
-const ctx3 = scissors.getContext('2d');
+rock.addEventListener('click', () => compareChoices('rock'));
+paper.addEventListener('click', () => compareChoices('paper'));
+scissors.addEventListener('click', () => compareChoices('scissors'));
 
-
-function loadRockImage(imgSrc, sx1, sy1){
-  const img = new Image();
-  img.src = imgSrc;
-  img.onload = () => {
-    const sx = sx1;
-    const sy = sy1;
-    const sWidth = 650;
-    const sHeight = 550;
-    const dx = 150;
-    const dy = 160;
-    const dWidth = 200;
-    const dHeight = 200;
-  ctx1.drawImage(img, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-  }
+function getComputerChoice() {
+  let elements = ['rock', 'paper', 'scissors'];
+  let computersChoice = elements[Math.floor(Math.random() * elements.length)];
+  return computersChoice;
 }
 
-loadRockImage('./rock.png', 130, 30);
+function compareChoices(usersChoice) {
+  const computersChoice = getComputerChoice();
 
-
-function loadPaperImage(imgSrc, sx1, sy1){
-  const img = new Image();
-  img.src = imgSrc;
-  img.onload = () => {
-    const sx = sx1;
-    const sy = sy1;
-    const sWidth = 680;
-    const sHeight = 550;
-    const dx = 150;
-    const dy = 160;
-    const dWidth = 200;
-    const dHeight = 200;
-  ctx2.drawImage(img, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-  }
-}
-
-loadPaperImage('./paper.png', 70, 30);
-
-function loadScissorsImage(imgSrc, sx1, sy1){
-  const img = new Image();
-  img.src = imgSrc;
-  img.onload = () => {
-    const sx = sx1;
-    const sy = sy1;
-    const sWidth = 680;
-    const sHeight = 550;
-    const dx = 150;
-    const dy = 160;
-    const dWidth = 200;
-    const dHeight = 200;
-  ctx3.drawImage(img, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-  }
-}
-
-loadScissorsImage('./scissors.png', 70, 30);
-
-rock.addEventListener('click', rockChoice);
-paper.addEventListener('click', paperChoice);
-scissors.addEventListener('click', scissorsChoice);
-
-function rockChoice(e){
-  e.preventDefault();
-  
-let elements = ['rock', 'paper', 'scissors'];
-let computersChoice = elements[Math.floor(Math.random() * elements.length)];
-console.log(computersChoice);
+  console.log(computersChoice);
   const choice = document.querySelector('.computersChoice');
   const result = document.querySelector('.result');
-  
-  if(computersChoice  === 'rock'){
-    choice.innerHTML = `The computer chose: ${computersChoice}`;
-    result.innerHTML = 'Stalemate';
-    result.style.color = 'blue';
-  }else if(computersChoice === 'paper'){
-    choice.innerHTML = `The computer chose: ${computersChoice}`;
-    result.innerHTML = 'Sorry you lost!';
-    result.style.color = 'red';
-  }else if(computersChoice === 'scissors'){
-    choice.innerHTML = `The computer chose: ${computersChoice}`;
-    result.innerHTML = 'You Won!';
-    result.style.color = 'green';
-  } 
+
+  switch (usersChoice + computersChoice) {
+    case 'rockscissors':
+    case 'paperrock':
+    case 'scissorspaper':
+      choice.textContent = `The computer chose: ${computersChoice}`;
+      result.textContent = 'You Won!';
+      result.style.color = 'green';
+      break;
+    case 'scissorsrock':
+    case 'rockpaper':
+    case 'paperscissors':
+      choice.textContent = `The computer chose: ${computersChoice}`;
+      result.textContent = 'Sorry you lost!';
+      result.style.color = 'red';
+      break;
+    case 'rockrock':
+    case 'paperpaper':
+    case 'scissorsscissors':
+      choice.textContent = `The computer chose: ${computersChoice}`;
+      result.textContent = 'Stalemate';
+      result.style.color = 'blue';
+      break;
+    default:
+      return;
+  }
 }
-
-function paperChoice(e){
-  e.preventDefault();
-  
-let elements = ['rock', 'paper', 'scissors'];
-let computersChoice = elements[Math.floor(Math.random() * elements.length)];
-console.log(computersChoice);
-  const choice = document.querySelector('.computersChoice');
-  const result = document.querySelector('.result');
-  
-  if(computersChoice  === 'rock'){
-    choice.innerHTML = `The computer chose: ${computersChoice}`;
-    result.innerHTML = 'You Won!'
-    result.style.color = 'green';
-  }else if(computersChoice === 'paper'){
-    choice.innerHTML = `The computer chose: ${computersChoice}`;
-    result.innerHTML = 'Stalemate';
-    result.style.color = 'blue';
-  }else if(computersChoice === 'scissors'){
-    choice.innerHTML = `The computer chose: ${computersChoice}`;
-    result.innerHTML = 'Sorry you lost!';
-    result.style.color = 'red';
-  } 
-}
-
-
-function scissorsChoice(e){
-  e.preventDefault();
-  
-let elements = ['rock', 'paper', 'scissors'];
-let computersChoice = elements[Math.floor(Math.random() * elements.length)];
-console.log(computersChoice);
-  const choice = document.querySelector('.computersChoice');
-  const result = document.querySelector('.result');
-  
-  if(computersChoice  === 'rock'){
-    choice.innerHTML = `The computer chose: ${computersChoice}`;
-    result.innerHTML = 'Sorry you lost!';
-    result.style.color = 'red';
-  }else if(computersChoice === 'paper'){
-    choice.innerHTML = `The computer chose: ${computersChoice}`;
-    result.innerHTML = 'You won!';
-    result.style.color = 'green';
-  }else if(computersChoice === 'scissors'){
-    choice.innerHTML = `The computer chose: ${computersChoice}`;
-    result.innerHTML = 'Stalemate';
-    result.style.color = 'blue';
-  } 
-}
-
-
-

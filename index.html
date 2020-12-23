@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RockPaperScissorsGame</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <h1 id="rps">Rock | Paper | Scissors</h1>
-  </div>
-  <canvas id="canvas-1" width="456" height="470"></canvas>
-  <canvas id="canvas-2" width="452" height="470"></canvas>
-  <canvas id="canvas-3" width="452" height="470"></canvas>
-  <div class="container-2">
-    <p class="computersChoice"></p>
-  </div>
-  <div class="container-3">
-    <p class="result"></p>
-  </div>
-  <script src="app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RockPaperScissorsGame</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="rps">Rock | Paper | Scissors</h1>
+    </div>
+    <div id="imageWrapper">
+      <div id="canvas-1" class="imageBackround">
+        <img src="rock.png" alt="" />
+      </div>
+      <div id="canvas-2" class="imageBackround"><img src="paper.png" alt="" /></div>
+      <div id="canvas-3" class="imageBackround"><img src="scissors.png" alt="" /></div>
+    </div>
+
+    <div class="container-2">
+      <p class="computersChoice"></p>
+    </div>
+    <div class="container-3">
+      <p class="result"></p>
+    </div>
+    <script src="app.js"></script>
+  </body>
 </html>
